@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -25,7 +26,7 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "u_id"),
@@ -34,11 +35,12 @@ public class User {
     private Set<Role> roleList = new HashSet<>();
 
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "user_client",
             joinColumns = @JoinColumn(name = "u_id"),
             inverseJoinColumns = @JoinColumn(name = "c_id")
     )
     private Set<Client> clientList = new HashSet<>();
+
 }

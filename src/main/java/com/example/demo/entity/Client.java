@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
@@ -14,12 +15,14 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "client")
 public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "c_id", insertable=false, updatable=false)
+    @EqualsAndHashCode.Include
     private int cId;
 
 

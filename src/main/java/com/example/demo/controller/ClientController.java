@@ -21,14 +21,4 @@ public class ClientController {
         return clientService.client_add(name);
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<?> getUser(@RequestParam int client_id){
-        return clientService.get_user(client_id);
-    }
-
-    @GetMapping("/role-user")
-    public ResponseEntity<?> getRoleSpecificUser(@RequestParam int client_id , @RequestParam int role_id){
-        return null;
-    }
-
 }

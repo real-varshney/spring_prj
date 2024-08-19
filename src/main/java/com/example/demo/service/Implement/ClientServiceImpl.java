@@ -30,4 +30,14 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
+    @Override
+    public ResponseEntity<?> get_user(Integer client_id) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<?> get_user_on_role(Integer client_id, Integer role_id) {
+        return null;
+    }
+
 }

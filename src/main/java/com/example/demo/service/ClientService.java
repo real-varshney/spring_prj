@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 public interface ClientService {
     ResponseEntity<?> client_add(String name);
     ResponseEntity<?> client_delete(Integer id);
+    ResponseEntity<?> get_user(Integer client_id);
+    ResponseEntity<?> get_user_on_role(Integer client_id, Integer role_id);
 }

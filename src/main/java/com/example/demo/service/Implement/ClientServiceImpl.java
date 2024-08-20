@@ -1,7 +1,9 @@
 package com.example.demo.service.Implement;
 
 import com.example.demo.entity.Client;
+import com.example.demo.entity.User;
 import com.example.demo.repository.ClientRepo;
+import com.example.demo.repository.UserRepo;
 import com.example.demo.service.ClientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,12 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientRepo clientRepo;
 
-    public ClientServiceImpl(ClientRepo clientRepo) {
+
+    private final UserRepo userRepo;
+
+    public ClientServiceImpl(ClientRepo clientRepo, UserRepo userRepo) {
         this.clientRepo = clientRepo;
+        this.userRepo = userRepo;
     }
 
     @Override
@@ -60,12 +66,19 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
+
+//    public List<User> getUsersByClientIdAndRoleId(int clientId, int role_id) {
+//        return userRepo.findDistinctByClientList_CIdAndRoleList_RId(clientId, role_id);
+//    }
+
     @Override
     public ResponseEntity<?> get_user_on_role(Integer client_id, Integer role_id) {
 
         try {
+            List<User> userList =  userRepo.findDistinctByClientList_CIdAndRoleList_RId(client_id, role_id);
+            System.out.println(userList);
 //            List<User> userList = clientRepo.findUsersByClientAndRole(client_id, role_id);
-            return ResponseEntity.ok("aheo");
+            return ResponseEntity.ok(userList);
         }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

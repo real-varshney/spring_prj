@@ -30,5 +30,14 @@ public class ClientController {
     @PatchMapping("/{client-id}")
     public ResponseEntity<?> updateClient(ClientDTO clientDTO) {
         return clientService.client_update(clientDTO.getId(), clientDTO.getName());
+
     }
+
+
+    @GetMapping("/user-role")
+    public ResponseEntity<?> getUserOnRole(@RequestParam int rId, @RequestParam int cId){
+        return clientService.get_user_on_role(cId, rId);
+    }
+
+
 }

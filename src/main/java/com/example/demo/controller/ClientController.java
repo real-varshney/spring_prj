@@ -16,19 +16,25 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-
     @PostMapping
     public ResponseEntity<?> AddClient(@RequestParam String name){
         return clientService.client_add(name);
     }
 
-    @DeleteMapping("/{client-id}")
-    public ResponseEntity<?> DeleteClient(@PathVariable Integer id) {
+    @DeleteMapping
+    public ResponseEntity<?> DeleteClient(@RequestParam Integer id) {
         return clientService.client_delete(id);
     }
 
-    @PatchMapping("/{client-id}")
-    public ResponseEntity<?> updateClient(ClientDTO clientDTO) {
+    @PatchMapping
+    public ResponseEntity<?> updateClient(@RequestBody ClientDTO clientDTO) {
         return clientService.client_update(clientDTO.getId(), clientDTO.getName());
     }
+
+    @GetMapping("/users")
+    public ResponseEntity<?> getUsers(@RequestParam int id){
+        return  clientService.get_user(id);
+    }
+
+
 }

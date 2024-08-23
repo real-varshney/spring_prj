@@ -11,4 +11,5 @@ public interface ClientService {
     ResponseEntity<?> get_user(Integer client_id);
     ResponseEntity<?> get_user_on_role(Integer client_id, Integer role_id);
     ResponseEntity<?> client_update(Integer id, String name);
+    ResponseEntity<?> getClient();
 }

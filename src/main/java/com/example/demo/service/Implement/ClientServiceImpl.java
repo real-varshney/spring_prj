@@ -19,11 +19,8 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepo clientRepo;
 
 
-    private final UserRepo userRepo;
-
-    public ClientServiceImpl(ClientRepo clientRepo, UserRepo userRepo) {
+    public ClientServiceImpl(ClientRepo clientRepo) {
         this.clientRepo = clientRepo;
-        this.userRepo = userRepo;
     }
 
     @Override
@@ -75,10 +72,7 @@ public class ClientServiceImpl implements ClientService {
     public ResponseEntity<?> get_user_on_role(Integer client_id, Integer role_id) {
 
         try {
-            List<User> userList =  userRepo.findDistinctByClientList_CIdAndRoleList_RId(client_id, role_id);
-            System.out.println(userList);
-//            List<User> userList = clientRepo.findUsersByClientAndRole(client_id, role_id);
-            return ResponseEntity.ok(userList);
+            return ResponseEntity.ok("hello");
         }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -92,6 +86,17 @@ public class ClientServiceImpl implements ClientService {
             client.ifPresent(value -> value.setName(name));
             clientRepo.save(client.get());
             return ResponseEntity.ok("Client updated successfully");
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found or some error in updating client " + e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getClient() {
+        try {
+            List<Client> clients = clientRepo.findAll();
+            return ResponseEntity.ok(clients);
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found or some error in updating client " + e.getMessage());

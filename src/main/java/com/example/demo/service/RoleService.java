@@ -11,4 +11,5 @@ public interface RoleService {
     ResponseEntity<?> role_add(String name);
     ResponseEntity<?> role_delete(Integer id);
     ResponseEntity<?>  role_update(ClientDTO roleReq);
+    ResponseEntity<?> role_get();
 }

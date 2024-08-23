@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
 
-    List<User> findDistinctByClientList_CIdAndRoleList_RId(int cId, int rId);
 }

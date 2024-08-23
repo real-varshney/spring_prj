@@ -40,6 +40,10 @@ public class ClientController {
     public ResponseEntity<?> getUserOnRole(@RequestParam int rId, @RequestParam int cId){
         return clientService.get_user_on_role(cId, rId);
     }
+    @GetMapping
+    public ResponseEntity<?> getClient(){
+        return clientService.getClient();
+    }
 
 
 }

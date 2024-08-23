@@ -22,6 +22,11 @@ public class RoleController {
         return roleService.role_add(name);
     }
 
+    @GetMapping
+    public ResponseEntity<?> GetRole(){
+        return roleService.role_get();
+    }
+
 
     @DeleteMapping
     public ResponseEntity<?> DeleteRole(@RequestParam Integer id) {
